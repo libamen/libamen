@@ -2,7 +2,6 @@ import json
 
 from flask_restful import Resource, reqparse
 
-from api.article.dao import ArticleDao
 from api.article import models
 
 
