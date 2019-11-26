@@ -1,36 +1,16 @@
 import { h, Component } from 'preact';
-import style from './style';
+
+import ArticleList from '../../components/article/articleList';
+
 
 export default class Home extends Component {
-	constructor() {
-		super();
-		this.state = { 
-			article: {
-				title: 'Green',
-				author: '',
-				body:'' 
-			}
-		 };
-	}
-	
-	fetchArticle = () => {
-		fetch('http://127.0.0.1:5000/article')
-			.then(res => res.json())
-			.then(data => this.setState({ article: data }));
-	}
-
-	componentDidMount() {
-		this.fetchArticle();
-	}
-
-	render({}, { article }) {
+	render() {
 		return (
-			<div class={style.home}>
-				<h1>Title: {article.title}</h1>
-				<h3>Author: {article.author}</h3>
-				<div dangerouslySetInnerHTML={{__html: article.body}} />
+			<div className="container col-xl-8 col-lg-9 col-md-10 col-sm-12" >
+				<div class="list-group">
+					<ArticleList/>
+				</div>
 			</div>
 		);
 	}
 }
-

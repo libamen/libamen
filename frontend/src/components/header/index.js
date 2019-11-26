@@ -1,14 +1,16 @@
-import { h } from 'preact';
 import { Link } from 'preact-router/match';
-import style from './style.css';
 
 const Header = () => (
-	<header class={style.header}>
-		<h1>Libamen</h1>
-		<nav>
-			<Link activeClassName={style.active} href="/">Home</Link>
-		</nav>
-	</header>
+	<nav className="navbar navbar-dark bg-dark" >
+		<Link className="navbar-brand" href="/">Libamen</Link>
+		<div id="navbarNav">
+			<ul className="navbar-nav">
+				<li className="nav-item">
+					<Link className="nav-link" href="/">Home</Link>
+				</li>
+			</ul>
+		</div>
+	</nav>
 );
 
 export default Header;

@@ -9,3 +9,4 @@ def init_api(api: Api):
     :param api: Main Flask api
     """
     api.add_resource(resources.Article, resources.Article.endpoint)
+    api.add_resource(resources.Articles, resources.Articles.endpoint)
