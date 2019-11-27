@@ -12,19 +12,19 @@ export default class ArticleMiniList extends Component {
 		 };
 	}
 	
-	fetchArticles = () => {
-		fetch('http://192.168.1.101:5000/articles')
+	fetchArticles = (articleId) => {
+		fetch('http://192.168.1.101:5000/articles/recommended?article_id='+ articleId)
 			.then(res => res.json())
 			.then(data => this.setState({ articles: data.articles }));
 	}
 
 	componentDidMount() {
-		this.fetchArticles();
+		this.fetchArticles(this.state.articleId);
 	}
 	
 	componentWillReceiveProps(newProps) {
 		if (this.props.articleId !== newProps.articleId) {
-			this.fetchArticles();
+			this.fetchArticles(newProps.articleId);
 		}
 	 }
     

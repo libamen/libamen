@@ -9,6 +9,12 @@ export default class ArticleMiniCard extends Component {
 			article: this.props.article
          };
 	}
+	
+	componentWillReceiveProps(newProps) {
+		if (this.props.articleId !== newProps.article) {
+			this.setState({ article: newProps.article });
+		}
+	 }
 
 	render({}, { article }) {
 		return (

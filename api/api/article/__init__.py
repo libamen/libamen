@@ -10,3 +10,5 @@ def init_api(api: Api):
     """
     api.add_resource(resources.Article, resources.Article.endpoint)
     api.add_resource(resources.Articles, resources.Articles.endpoint)
+    api.add_resource(resources.ArticlesRecommended, resources.ArticlesRecommended.endpoint)
+    api.add_resource(resources.SearchTag, resources.SearchTag.endpoint)
