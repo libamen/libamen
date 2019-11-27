@@ -9,11 +9,14 @@ export default class ArticlePage extends Component {
 		this.state = { 
 			articleId: this.props.id
 		 };
-    }
+	}
+	componentWillReceiveProps (nextProps) {
+		this.setState({ articleId: nextProps.id });
+	 }
 
 	render() {
 		return (
-			<div className="container col-xl-8 col-lg-9 col-md-10 col-sm-12" >
+			<div className="container col-xl-9 col-lg-11 col-md-11 col-sm-12">
 				<Article articleId={this.state.articleId}/>
 			</div>
 		);

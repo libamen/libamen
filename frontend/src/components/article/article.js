@@ -1,5 +1,7 @@
 import { h, Component } from 'preact';
 
+import ArticleMiniList from './articleMiniList';
+
 
 export default class Article extends Component {
 	constructor(props) {
@@ -16,35 +18,48 @@ export default class Article extends Component {
             }
 		 };
     }
-    fetchArticle = () => {
-		fetch('http://192.168.1.101:5000/article?article_id=' + this.state.articleId)
+    fetchArticle = (articleId) => {
+		fetch('http://192.168.1.101:5000/article?article_id=' + articleId)
 			.then(res => res.json())
-			.then(data => {this.setState({ article: data }); console.log(data);});
+			.then(data => this.setState({ article: data }));
+		
 	}
 
 	componentDidMount() {
-        this.fetchArticle();
-        console.log(this.state.article);
-    }
+		this.fetchArticle(this.state.articleId);
+	}
+	componentWillReceiveProps(nextProps) {
+		if (this.props.articleId !== nextProps.articleId) {
+			this.setState({ articleId: nextProps.articleId}, this.fetchArticle(nextProps.articleId));
+		}
+		
+	 }
     
     formatDate(articleDate) {
         var date = new Date(articleDate);
-        return date.getFullYear() + "-" + "-" + date.getMonth() + "-" + date.getDate();
-
+        return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
     }
 
 	render({}, { article }) {
 		return (
-            <div class="m-3">
-                <div class="d-flex w-100 justify-content-center">
-                    <h1>{article.title}</h1>
-                </div>
-                <div dangerouslySetInnerHTML={{__html: article.body}} />
-                <div class="d-flex w-100 justify-content-between">
-                    <small>{article.author}</small>
-                    <small>{this.formatDate(article.date.$date)}</small>
-                </div>
-            </div>
+            <div className="m-3">
+				<div class="d-flex w-100 justify-content-center mt-2 col-xl-8 col-lg-7">
+					<h1>{article.title}</h1>
+				</div>
+				<div className="row">
+					<div className="col-xl-8 col-lg-7 border-right mt-2">
+						<div dangerouslySetInnerHTML={{__html: article.body}} />
+						<div class="d-flex w-100 justify-content-between">
+							<small>{article.author}</small>
+							<small>{this.formatDate(article.date.$date)}</small>
+						</div>
+					</div>
+					<div className="col-xl-4 col-lg-5 mt-2">
+						<h5>Recommended Articles</h5>
+						<ArticleMiniList articleId={this.props.articleId}/>
+					</div>
+				</div>
+			</div>
 		);
 	}
 }
