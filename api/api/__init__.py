@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_migrate import Migrate
 from flask_restful import Api
 from flask_cors import CORS
 
@@ -22,11 +21,6 @@ def create_test_app():
     return entrypoint(config=TestConfig)
 
 
-def initialize_database(app):
-    # Todo: Add a database
-    pass
-
-
 def entrypoint(config: Config = DevConfig):
     """
     Initializes a application.
@@ -37,7 +31,6 @@ def entrypoint(config: Config = DevConfig):
     app = Flask(__name__)
 
     configure_app(app, config)
-    initialize_database(app)
 
     api = Api(app)
     init_api(api)

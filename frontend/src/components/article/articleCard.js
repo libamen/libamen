@@ -17,7 +17,7 @@ export default class ArticleCard extends Component {
                     <h4>{article.title}</h4>
                     <small>Author: {article.author}</small>
                 </div>
-                <div dangerouslySetInnerHTML={{__html: article.body.substring(1, 220)}} />...
+                <p>{article.summary}</p>
             </Link>
 		);
 	}

@@ -14,6 +14,7 @@ class Article(Document):
     title = StringField(required=True, max_length=200, unique=True)
     author = StringField(required=True, max_length=25)
     body = StringField(required=True)
+    summary = StringField(required=True)
     date = DateField(required=True, default=datetime.utcnow)
     tags = ListField(ReferenceField(Tag))
 

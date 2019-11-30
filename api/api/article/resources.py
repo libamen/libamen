@@ -21,6 +21,7 @@ class Article(Resource):
         parser.add_argument('title', type=str, required=True)
         parser.add_argument('author', type=str, required=True)
         parser.add_argument('body', type=str, required=True)
+        parser.add_argument('summary', type=str, required=True)
         parser.add_argument('tags', action='append', required=False)
         args = parser.parse_args()
         tags = get_tags_from_json(args.get('tags'))
