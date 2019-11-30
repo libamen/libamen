@@ -1,0 +1,21 @@
+.dark-theme {
+    background-color: #111 !important;
+    color: #eee;
+    .list-group-item {
+      background-color: #111 !important;
+      color: #eee;
+      border-color: rgb(128, 128, 128);
+    }
+}
+  
+.dark-theme .bg-light {
+    background-color: #333 !important;
+  }
+  
+  .dark-theme .bg-white {
+    background-color: #000 !important;
+  }
+  
+  .dark-theme .bg-black {
+    background-color: #eee !important;
+  }

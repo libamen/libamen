@@ -1,0 +1,14 @@
+@import 'dynamic-text.scss';
+@import 'slider.scss';
+@import 'dark-mode.scss';
+html,
+body {
+  height: 100%;
+  margin: 0
+}
+
+#app {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
