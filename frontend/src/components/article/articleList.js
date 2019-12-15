@@ -12,7 +12,8 @@ export default class ArticleList extends Component {
 	}
 	
 	fetchArticles = () => {
-		fetch('http://192.168.1.101:5000/articles')
+		
+		fetch('/articles')
 			.then(res => res.json())
 			.then(data => this.setState({ articles: data.articles }));
 	}

@@ -19,7 +19,7 @@ export default class Article extends Component {
 		 };
     }
     fetchArticle = (articleId) => {
-		fetch('http://192.168.1.101:5000/article?article_id=' + articleId)
+		fetch('/article?article_id=' + articleId)
 			.then(res => res.json())
 			.then(data => this.setState({ article: data }));
 		

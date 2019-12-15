@@ -13,7 +13,7 @@ export default class ArticleMiniList extends Component {
 	}
 	
 	fetchArticles = (articleId) => {
-		fetch('http://192.168.1.101:5000/articles/recommended?article_id='+ articleId)
+		fetch('/articles/recommended?article_id='+ articleId)
 			.then(res => res.json())
 			.then(data => this.setState({ articles: data.articles }));
 	}
