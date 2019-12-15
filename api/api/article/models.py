@@ -27,7 +27,5 @@ class Article(Document):
 
     def to_json(self):
         data = self.to_mongo()
-        for tag in self.tags:
-            print(tag.name)
         data["tags"] = [tag.name for tag in self.tags]
         return json_util.dumps(data)
