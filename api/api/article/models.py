@@ -13,6 +13,7 @@ class CustomQuerySet(QuerySet):
 
 class Tag(Document):
     name = StringField(max_length=50, unique=True)
+    color = StringField(max_length=10, unique=True, default="#007bff")
 
 
 class Article(Document):
@@ -27,5 +28,5 @@ class Article(Document):
 
     def to_json(self):
         data = self.to_mongo()
-        data["tags"] = [tag.name for tag in self.tags]
+        data["tags"] = [{'name': tag.name, 'color': tag.color} for tag in self.tags]
         return json_util.dumps(data)
