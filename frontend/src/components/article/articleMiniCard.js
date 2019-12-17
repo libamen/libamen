@@ -18,7 +18,7 @@ export default class ArticleMiniCard extends Component {
 
 	render({}, { article }) {
 		return (
-            <Link href={"/article/" + article._id.$oid} class="list-group-item list-group-item-action flex-column align-items-start">
+            <Link href={"/article/" + article.title.replace(/ /g, '-').toLowerCase()} class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-center">
                     <small>{article.title}</small>
                 </div>

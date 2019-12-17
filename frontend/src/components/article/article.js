@@ -19,7 +19,7 @@ export default class Article extends Component {
 		 };
     }
     fetchArticle = (articleId) => {
-		fetch('/article?article_id=' + articleId)
+		fetch('/article-by-title?article_title=' + articleId)
 			.then(res => res.json())
 			.then(data => this.setState({ article: data }));
 		

@@ -1,4 +1,5 @@
 import json
+import re
 
 from flask_restful import Resource, reqparse
 
@@ -31,6 +32,18 @@ class Article(Resource):
         return json.loads(article.to_json())
 
 
+class ArticleByTitle(Resource):
+    endpoint = '/article-by-title'
+
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('article_title', type=str, required=True)
+        args = parser.parse_args()
+        regex_name_search = re.compile(args['article_title'].replace('-', '[ |-]'), re.IGNORECASE)
+        article = models.Article.objects(__raw__={'title': {'$in': ['sql', regex_name_search]}}).first()
+        return json.loads(article.to_json())
+
+
 class Articles(Resource):
     endpoint = '/articles'
 
@@ -44,9 +57,10 @@ class ArticlesRecommended(Resource):
 
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('article_id', type=str, required=True)
+        parser.add_argument('article_title', type=str, required=True)
         args = parser.parse_args()
-        article = models.Article.objects.get(id=args['article_id'])
+        regex_name_search = re.compile(args['article_title'].replace('-', '[ |-]'), re.IGNORECASE)
+        article = models.Article.objects(__raw__={'title': {'$in': ['sql', regex_name_search]}}).first()
         articles = models.Article.objects.filter(tags__in=article.tags, id__ne=article.id).order_by('date').limit(5)
         if not articles:
             articles = models.Article.objects.filter(id__ne=article.id).order_by('date').limit(5)
