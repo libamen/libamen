@@ -32,7 +32,7 @@ def entrypoint(config: Config = DevConfig):
 
     configure_app(app, config)
 
-    api = Api(app)
+    api = Api(app, prefix='/api')
     init_api(api)
 
     return app

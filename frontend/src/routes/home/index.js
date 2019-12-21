@@ -4,6 +4,11 @@ import ArticleList from '../../components/article/articleList';
 
 
 export default class Home extends Component {
+
+	componentDidMount() {
+		document.title = `Libamen`;
+	}
+
 	render() {
 		return (
 			<div className="container col-xl-8 col-lg-9 col-md-10 col-sm-12" >

@@ -11,17 +11,26 @@ export default class Article extends Component {
             article: {
                 title: '',
                 author: '',
-                body: '',
+				body: '',
+				summary: '',
+				tags: [],
                 date: {
                     $date: ''
                 }
             }
 		 };
-    }
+	}
+	setMetaData = (data) => {
+		var metadata = document.getElementsByTagName('meta');
+		metadata["description"].content = data.summary;
+		console.log(data.tags)
+		metadata["keywords"].content = data.tags.map(e => e.name).join(', ');
+		document.title = `Libamen - ${data.title}`;
+	}
     fetchArticle = (articleId) => {
-		fetch('/article-by-title?article_title=' + articleId)
+		fetch('/api/article-by-title?article_title=' + articleId)
 			.then(res => res.json())
-			.then(data => this.setState({ article: data }));
+			.then(data => this.setState({ article: data }, this.setMetaData(data)));
 		
 	}
 

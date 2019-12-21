@@ -13,7 +13,7 @@ export default class ArticleList extends Component {
 	
 	fetchArticles = () => {
 		
-		fetch('/articles')
+		fetch('/api/articles')
 			.then(res => res.json())
 			.then(data => this.setState({ articles: data.articles }));
 	}
