@@ -4,7 +4,7 @@ import re
 from flask_restful import Resource, reqparse
 
 from api.article import models
-from api.article.utils import get_tags_from_json
+from api.article.utils import get_tags_from_json, paginate
 
 
 class Article(Resource):
@@ -48,8 +48,12 @@ class Articles(Resource):
     endpoint = '/articles'
 
     def get(self):
-        articles = models.Article.objects
-        return {"articles": json.loads(articles.to_json())}
+        parser = reqparse.RequestParser()
+        parser.add_argument('page', type=str, required=False, default=1)
+        parser.add_argument('per_page', type=str, required=False, default=0)
+        args = parser.parse_args()
+        response = paginate(models.Article.objects, page=args['page'], per_page=args['per_page'])
+        return response
 
 
 class ArticlesRecommended(Resource):
