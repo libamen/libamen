@@ -10,6 +10,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     DEBUG = False
     TESTING = False
+    UPLOAD_FOLDER = f'{basedir}/uploads'
 
 
 class DevConfig(Config):

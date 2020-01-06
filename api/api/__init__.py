@@ -4,6 +4,8 @@ from flask_cors import CORS
 
 from config import DevConfig, TestConfig, Config
 
+app = Flask(__name__)
+
 
 def create_app():
     """
@@ -28,9 +30,8 @@ def entrypoint(config: Config = DevConfig):
     :return: An initialized app.
     """
 
-    app = Flask(__name__)
-
-    configure_app(app, config)
+    configure_app(config)
+    register_blueprints()
 
     api = Api(app, prefix='/api')
     init_api(api)
@@ -38,10 +39,9 @@ def entrypoint(config: Config = DevConfig):
     return app
 
 
-def configure_app(app, config):
+def configure_app(config):
     """
     Fetch configuration.
-    :param app: Flask application.
     :param config: Config object.
     """
     app.config.from_object(config)
@@ -55,3 +55,11 @@ def init_api(api):
     """
     from api import article
     article.init_api(api=api)
+
+
+def register_blueprints():
+    """
+    Register all blueprints that makes up the part of flask that is not the api.
+    """
+    from api.uploads.routes import upload_bp
+    app.register_blueprint(upload_bp, url_prefix="/uploads")

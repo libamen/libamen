@@ -8,6 +8,14 @@ module.exports = function (config) {
           // where to proxy to:
           target: 'http://localhost:5000',
   
+        },
+        {
+          // proxy requests matching a pattern:
+          path: '/uploads',
+  
+          // where to proxy to:
+          target: 'http://localhost:5000',
+  
         }
       ];
     }
