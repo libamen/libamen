@@ -9,3 +9,5 @@ yarn.lock
 test/ts/**/*.js
 coverage
 *.sw[op]
+build
+**/*/.idea
