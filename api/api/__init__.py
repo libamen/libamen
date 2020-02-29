@@ -7,12 +7,12 @@ from config import DevConfig, TestConfig, Config
 app = Flask(__name__)
 
 
-def create_app():
+def create_app(config: Config = DevConfig):
     """
     Initialize and returns a Flask app.
     :return: Flask application.
     """
-    return entrypoint()
+    return entrypoint(config)
 
 
 def create_test_app():

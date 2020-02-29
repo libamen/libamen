@@ -13,7 +13,7 @@ export default class ArticleMiniList extends Component {
 	}
 	
 	fetchArticles = (articleId) => {
-		fetch('/api/articles/recommended?article_title='+ articleId)
+		fetch('https://api.libamen.tech/api/articles/recommended?article_title='+ articleId)
 			.then(res => res.json())
 			.then(data => this.setState({ articles: data.articles }));
 	}

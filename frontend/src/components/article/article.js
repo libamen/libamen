@@ -23,12 +23,11 @@ export default class Article extends Component {
 	setMetaData = (data) => {
 		var metadata = document.getElementsByTagName('meta');
 		metadata["description"].content = data.summary;
-		console.log(data.tags)
 		metadata["keywords"].content = data.tags.map(e => e.name).join(', ');
 		document.title = `Libamen - ${data.title}`;
 	}
     fetchArticle = (articleId) => {
-		fetch('/api/article-by-title?article_title=' + articleId)
+		fetch('https://api.libamen.tech/api/article-by-title?article_title=' + articleId)
 			.then(res => res.json())
 			.then(data => this.setState({ article: data }, this.setMetaData(data)));
 		

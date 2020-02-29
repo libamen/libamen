@@ -13,7 +13,7 @@ export default class ArticleList extends Component {
 	
 	fetchArticles = () => {
 		
-		fetch('/api/articles')
+		fetch('https://api.libamen.tech/api/articles')
 			.then(res => res.json())
 			.then(data => this.setState({ articles: data.articles }));
 	}

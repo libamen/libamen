@@ -8,8 +8,8 @@
     "start:production": "npm run -s serve",
     "start:development": "npm run -s dev",
     "build": "preact build",
-    "serve": "preact build && serve build --single",
-    "dev": "preact watch",
+    "serve": "preact build -p && serve build --single ",
+    "dev": "PORT=8000 preact watch",
     "lint": "eslint src",
     "test": "jest"
   },
@@ -29,17 +29,17 @@
     "jest-preset-preact": "^1.0.0",
     "node-sass": "^4.13.0",
     "per-env": "^1.0.2",
-    "preact-cli": "^3.0.0-rc.6",
     "preact-render-spy": "^1.2.1",
-    "sass-loader": "^7.3.1",
-    "serve": "^11.1.0"
+    "sass-loader": "^7.3.1"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
     "preact": "^10.0.1",
     "preact-compat": "^3.19.0",
     "preact-render-to-string": "^5.1.0",
-    "preact-router": "^3.0.0"
+    "preact-router": "^3.0.0",
+    "serve": "^11.1.0",
+    "preact-cli": "^3.0.0-rc.6"
   },
   "jest": {
     "preset": "jest-preset-preact",

@@ -13,7 +13,7 @@ class CustomQuerySet(QuerySet):
 
 class Tag(Document):
     name = StringField(max_length=50, unique=True)
-    color = StringField(max_length=10, unique=True, default="#007bff")
+    color = StringField(max_length=10, unique=False, default="#007bff")
 
 
 class Article(Document):

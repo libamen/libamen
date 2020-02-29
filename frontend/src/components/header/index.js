@@ -11,9 +11,6 @@ const Header = () => (
 					<Link className="nav-link" href="/">Home</Link>
 				</li>
 			</ul>
-			<div className="text-secondary">
-				<ThemeTogglerButton/>
-			</div>
 		</div>
 	</nav>
 );
