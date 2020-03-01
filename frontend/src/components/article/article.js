@@ -21,9 +21,10 @@ export default class Article extends Component {
 		 };
 	}
 	setMetaData = (data) => {
-		var metadata = document.getElementsByTagName('meta');
-		metadata["description"].content = data.summary;
-		metadata["keywords"].content = data.tags.map(e => e.name).join(', ');
+		var description = document.getElementById('meta-description');
+		description.content = data.summary;
+		var keywords = document.getElementById('meta-keywords');
+		keywords.content = data.tags.map(e => e.name).join(', ');
 		document.title = `Libamen - ${data.title}`;
 	}
     fetchArticle = (articleId) => {
